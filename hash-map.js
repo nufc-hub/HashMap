@@ -3,6 +3,10 @@
 // }
 
 class HashMap {
+  constructor(bucketSize = 16) {
+    this.bucket = new Array(bucketSize).fill(null).map(() => []);
+  }
+
   hash(key, bucketSize) {
     let hashCode = 0;
 
