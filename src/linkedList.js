@@ -6,8 +6,8 @@ class LinkedList {
   }
 
   // Adds a new node containing -value- to the end of the list.
-  append(value) {
-    const newNode = new Node(value);
+  append(key, value) {
+    const newNode = new Node(key, value);
 
     if (this.head === null) {
       this.head = newNode;
@@ -22,7 +22,7 @@ class LinkedList {
   }
 
   // Adds a new node containing -value- to the start of the list.
-  prepend(value) {
+  prepend(key, value) {
     this.head = new Node(key, value, this.head);
   }
 
