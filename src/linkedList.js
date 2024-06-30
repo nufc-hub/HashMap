@@ -112,20 +112,14 @@ class LinkedList {
     return false;
   }
 
-  // Returns the index of the node containing key, or null if not found.
+  // Returns the node containing key, or null if not found.
   find(key) {
-    if (this.head === null) {
-      return null;
-    }
-
     let current = this.head;
-    let index = 0;
 
-    while (current !== null) {
+    while (current) {
       if (current.key === key) {
-        return index;
+        return current;
       }
-      index++;
       current = current.nextNode;
     }
     return null;
