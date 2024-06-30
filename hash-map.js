@@ -3,17 +3,18 @@
 // }
 
 class HashMap {
-  constructor(bucketSize = 16) {
-    this.bucket = new Array(bucketSize).fill(null).map(() => []);
+  constructor() {
+    this.buckets = new Array(16).fill(null).map(() => []);
   }
 
-  hash(key, bucketSize) {
+  hash(key) {
     let hashCode = 0;
 
     let primeNumber = 31;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % bucketSize;
+      hashCode =
+        (primeNumber * hashCode + key.charCodeAt(i)) % this.buckets.length;
     }
 
     return hashCode;
@@ -22,4 +23,4 @@ class HashMap {
 
 const hashMap = new HashMap();
 
-console.log(hashMap.hash('karim', 13));
+console.log(hashMap.hash('Karim'));
