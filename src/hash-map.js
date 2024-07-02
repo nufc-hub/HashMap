@@ -58,6 +58,14 @@ class HashMap {
       return null;
     }
   }
+
+  // has(key) takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
+  has(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+
+    return bucket.contains(key);
+  }
 }
 
 export default HashMap;
