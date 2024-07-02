@@ -9,6 +9,7 @@ class HashMap {
     this.buckets = new Array(16).fill(null).map(() => new LinkedList());
   }
 
+  // hash(key) takes a key and produces a hash code with it.
   hash(key) {
     let hashCode = 0;
 
@@ -22,6 +23,10 @@ class HashMap {
     return hashCode;
   }
 
+  // set(key, value) takes two arguments, the first is a key and the second is a value that is assigned to this key.
+  // If a key already exists, then the old value is updated.
+  // Creates a head node in a new element
+  // If there is a hash collision a linked list is created.
   set(key, value) {
     const index = this.hash(key);
     const bucket = this.buckets[index];
@@ -39,6 +44,19 @@ class HashMap {
 
     console.log(this.buckets);
     // Grow bucket when need to. When bucket size has reached the load factor.
+  }
+
+  // get(key) takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
+  get(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+    const node = bucket.find(key);
+
+    if (node) {
+      return node.value;
+    } else {
+      return null;
+    }
   }
 }
 
