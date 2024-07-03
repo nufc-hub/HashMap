@@ -186,7 +186,7 @@ class LinkedList {
   }
 
   // removeAt(index) that removes the node at the given index.
-  removeAt(index) {
+  removeAtIndex(index) {
     if (index < 0) {
       return;
     }
