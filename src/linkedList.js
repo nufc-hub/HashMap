@@ -185,7 +185,7 @@ class LinkedList {
     }
   }
 
-  // removeAt(index) that removes the node at the given index.
+  // removeAtIndex(index) that removes the node at the given index.
   removeAtIndex(index) {
     if (index < 0) {
       return;
@@ -216,6 +216,35 @@ class LinkedList {
     } else if (counter === index) {
       previous.nextNode = current.nextNode;
     }
+  }
+
+  // removeAtKey(key) that removes the node at the given key.
+  removeAtKey(key) {
+    if (this.head === null) {
+      console.log(`Key: ${key}, does not exist in an empty list.`);
+      return false;
+    }
+
+    if (this.head.key === key) {
+      this.head = this.head.nextNode;
+      return true;
+    }
+
+    let current = this.head;
+    let previous = null;
+
+    while (current !== null && current.key !== key) {
+      previous = current;
+      current = current.nextNode;
+    }
+
+    if (current === null) {
+      console.log(`Key: ${key}, does not exist in this list.`);
+      return false;
+    }
+
+    previous.nextNode = current.nextNode;
+    return true;
   }
 }
 
