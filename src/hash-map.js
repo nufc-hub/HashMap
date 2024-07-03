@@ -66,6 +66,25 @@ class HashMap {
 
     return bucket.contains(key);
   }
+
+  // remove(key) takes a key as an argument.
+  // If the given key is in the hash map, it should remove the entry with that key and return true.
+  // If the key isn’t in the hash map, it should return false.
+
+  remove(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+
+    const result = bucket.removeAtKey(key);
+
+    if (result) {
+      this.size--;
+    }
+
+    console.log('Updated Bucket after removal:', bucket);
+
+    return result;
+  }
 }
 
 export default HashMap;
