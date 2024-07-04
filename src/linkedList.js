@@ -246,6 +246,11 @@ class LinkedList {
     previous.nextNode = current.nextNode;
     return true;
   }
+
+  // Deletes all nodes in a list.
+  deleteAll() {
+    this.head = null;
+  }
 }
 
 export default LinkedList;
