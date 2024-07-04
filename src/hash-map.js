@@ -85,6 +85,22 @@ class HashMap {
 
     return result;
   }
+
+  // length() returns the number of stored keys in the hash map.
+  length() {
+    let hashLength = 0;
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      console.log(bucket);
+      const bucketLength = bucket.size();
+      console.log(bucketLength);
+
+      hashLength += bucketLength;
+    }
+
+    return hashLength;
+  }
 }
 
 export default HashMap;
