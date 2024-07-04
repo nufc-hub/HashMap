@@ -101,6 +101,15 @@ class HashMap {
 
     return hashLength;
   }
+
+  // clear() removes all entries in the hash map.
+  clear() {
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      bucket.deleteAll();
+    }
+    console.log(this.buckets);
+  }
 }
 
 export default HashMap;
