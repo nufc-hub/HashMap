@@ -94,7 +94,7 @@ class LinkedList {
     previous.nextNode = null;
   }
 
-  // Returns true if the passed in key is in the list and otherwise returns false.
+  // Returns true if the passed in key is in the list, otherwise returns false.
   contains(key) {
     if (this.head === null) {
       return false;
@@ -123,6 +123,18 @@ class LinkedList {
       current = current.nextNode;
     }
     return null;
+  }
+  // Returns an array containing all keys in the list.
+
+  getAllKeys() {
+    let current = this.head;
+    let keys = [];
+
+    while (current !== null) {
+      keys.push(`Key: ${current.key}, `);
+      current = current.nextNode;
+    }
+    return keys;
   }
 
   // Represents your LinkedList objects as strings, so you can print them out and preview them in the console.
