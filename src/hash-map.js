@@ -108,7 +108,19 @@ class HashMap {
       const bucket = this.buckets[i];
       bucket.deleteAll();
     }
-    console.log(this.buckets);
+  }
+
+  // keys() returns an array containing all the keys inside the hash map.
+  keys() {
+    let allKeys = [];
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      const key = bucket.getAllKeys();
+      allKeys = allKeys.concat(key);
+    }
+
+    return allKeys;
   }
 }
 
