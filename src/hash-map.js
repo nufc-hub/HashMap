@@ -7,6 +7,11 @@ import LinkedList from './linkedList.js';
 class HashMap {
   constructor() {
     this.buckets = new Array(16).fill(null).map(() => new LinkedList());
+    this.loadFactor = 0.75;
+    // Capacity double each time there is a resize.
+    this.capacity = this.buckets.length;
+    // Size increases each time a new key-value pair is set. Decreases if key-value pair deleted.
+    this.size = 0;
   }
 
   // hash(key) takes a key and produces a hash code with it.
@@ -16,8 +21,7 @@ class HashMap {
     let primeNumber = 31;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode =
-        (primeNumber * hashCode + key.charCodeAt(i)) % this.buckets.length;
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.capacity;
     }
 
     return hashCode;
@@ -31,30 +35,67 @@ class HashMap {
     const index = this.hash(key);
     const bucket = this.buckets[index];
 
-    if (index < 0 || index >= this.buckets.length) {
+    if (index < 0 || index >= this.capacity) {
       throw new Error('Trying to access index out of bound');
     }
 
+    // For overwriting a value
     const node = bucket.find(key);
     if (node) {
       node.value = value;
     } else {
+      // For not overwriting a value - creating a new key value pair
       bucket.append(key, value);
+      this.size++;
     }
 
-    console.log(this.buckets);
+    if (this.size / this.capacity > this.loadFactor) {
+      this.resize();
+    }
+
+    // console.log(this.buckets);
     // Grow bucket when need to. When bucket size has reached the load factor.
+  }
+
+  resize() {
+    // Determine the New Size: Typically, the new size is a multiple (often double) of the current size.
+    this.capacity = this.capacity * 2;
+    const newBuckets = new Array(this.capacity)
+      .fill(null)
+      .map(() => new LinkedList());
+
+    // Rehashing: All existing entries are rehashed to map them to new bucket indices based on the new size of the array.
+    for (let i = 0; i < this.buckets.length; i++) {
+      // Get the key with the value
+      let current = this.buckets[i].head;
+      while (current !== null) {
+        const newIndex = this.hash(current.key);
+        newBuckets[newIndex].append(current.key, current.value);
+        current = current.nextNode;
+      }
+
+      // Use the hash function to hash it
+      // Use the set function to add it to new array
+    }
+    this.buckets = newBuckets;
+    // Reassign Entries: Entries are moved to the new bucket array to reflect the updated hash values.
   }
 
   // get(key) takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
   get(key) {
     const index = this.hash(key);
     const bucket = this.buckets[index];
+
     const node = bucket.find(key);
+
+    if (index < 0 || index >= buckets.length) {
+      throw new Error('Trying to access index out of bound');
+    }
 
     if (node) {
       return node.value;
     } else {
+      //Remove else statement
       return null;
     }
   }
@@ -63,6 +104,10 @@ class HashMap {
   has(key) {
     const index = this.hash(key);
     const bucket = this.buckets[index];
+
+    if (index < 0 || index >= buckets.length) {
+      throw new Error('Trying to access index out of bound');
+    }
 
     return bucket.contains(key);
   }
@@ -74,6 +119,10 @@ class HashMap {
   remove(key) {
     const index = this.hash(key);
     const bucket = this.buckets[index];
+
+    if (index < 0 || index >= buckets.length) {
+      throw new Error('Trying to access index out of bound');
+    }
 
     const result = bucket.removeAtKey(key);
 
@@ -121,6 +170,33 @@ class HashMap {
     }
 
     return allKeys;
+  }
+
+  // values() returns an array containing all the values.
+
+  values() {
+    let allValues = [];
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      const value = bucket.getAllValues();
+      allValues = allValues.concat(value);
+    }
+
+    return allValues;
+  }
+
+  // entries() returns an array that contains each key, value pair. Example: [[firstKey, firstValue], [secondKey, secondValue]]
+  entries() {
+    let allKeyValues = [];
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      const bucket = this.buckets[i];
+      const keyValue = bucket.getAllKeyValues();
+      allKeyValues = allKeyValues.concat(keyValue);
+    }
+
+    return allKeyValues;
   }
 }
 
