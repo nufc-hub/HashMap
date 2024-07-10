@@ -5,7 +5,7 @@ class LinkedList {
     this.head = null;
   }
 
-  // Adds a new node containing -value- to the end of the list.
+  // Adds a new node containing key-value to the end of the list.
   append(key, value) {
     const newNode = new Node(key, value);
 
@@ -21,7 +21,7 @@ class LinkedList {
     }
   }
 
-  // Adds a new node containing -value- to the start of the list.
+  // Adds a new node containing key-value to the start of the list.
   prepend(key, value) {
     this.head = new Node(key, value, this.head);
   }
@@ -136,6 +136,7 @@ class LinkedList {
     return keys;
   }
 
+  // Returns an array containing all values in the list.
   getAllValues() {
     let current = this.head;
     let value = [];
@@ -148,6 +149,7 @@ class LinkedList {
     return value;
   }
 
+  // Returns an array containing all key-values in the list.
   getAllKeyValues() {
     let current = this.head;
     let keyValue = [];
@@ -159,7 +161,7 @@ class LinkedList {
     return keyValue;
   }
 
-  // Represents your LinkedList objects as strings, so you can print them out and preview them in the console.
+  // Represents the LinkedList objects as strings, can print them out and preview them in the console.
   toString() {
     if (this.head === null) {
       return 'null';
@@ -176,7 +178,7 @@ class LinkedList {
     string += 'null';
     return string;
   }
-  // insertAt(value, index) that inserts a new node with the provided value at the given index.
+  // insertAt(key, value, index) that inserts a new node with the provided key-value at the given index.
   insertAt(key, value, index) {
     const newNode = new Node(key, value);
 
