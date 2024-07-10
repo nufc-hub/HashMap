@@ -116,7 +116,7 @@ class LinkedList {
   find(key) {
     let current = this.head;
 
-    while (current) {
+    while (current !== null) {
       if (current.key === key) {
         return current;
       }
@@ -125,7 +125,6 @@ class LinkedList {
     return null;
   }
   // Returns an array containing all keys in the list.
-
   getAllKeys() {
     let current = this.head;
     let keys = [];
@@ -135,6 +134,29 @@ class LinkedList {
       current = current.nextNode;
     }
     return keys;
+  }
+
+  getAllValues() {
+    let current = this.head;
+    let value = [];
+
+    while (current !== null) {
+      value.push(`Value: ${current.value}, `);
+      current = current.nextNode;
+    }
+
+    return value;
+  }
+
+  getAllKeyValues() {
+    let current = this.head;
+    let keyValue = [];
+
+    while (current !== null) {
+      keyValue.push([current.key, current.value]);
+      current = current.nextNode;
+    }
+    return keyValue;
   }
 
   // Represents your LinkedList objects as strings, so you can print them out and preview them in the console.
