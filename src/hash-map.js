@@ -127,11 +127,10 @@ class HashMap {
 
     if (result) {
       this.size--;
+      return true;
     }
 
-    console.log('Updated Bucket after removal:', bucket);
-
-    return result;
+    return false;
   }
 
   // length() returns the number of stored keys in the hash map.
