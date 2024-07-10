@@ -88,16 +88,15 @@ class HashMap {
 
     const node = bucket.find(key);
 
-    if (index < 0 || index >= buckets.length) {
+    if (index < 0 || index >= this.buckets.length) {
       throw new Error('Trying to access index out of bound');
     }
 
     if (node) {
       return node.value;
-    } else {
-      //Remove else statement
-      return null;
     }
+
+    return null;
   }
 
   // has(key) takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
