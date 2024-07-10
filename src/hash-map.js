@@ -104,7 +104,7 @@ class HashMap {
     const index = this.hash(key);
     const bucket = this.buckets[index];
 
-    if (index < 0 || index >= buckets.length) {
+    if (index < 0 || index >= this.buckets.length) {
       throw new Error('Trying to access index out of bound');
     }
 
@@ -119,7 +119,7 @@ class HashMap {
     const index = this.hash(key);
     const bucket = this.buckets[index];
 
-    if (index < 0 || index >= buckets.length) {
+    if (index < 0 || index >= this.buckets.length) {
       throw new Error('Trying to access index out of bound');
     }
 
