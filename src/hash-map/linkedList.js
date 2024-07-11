@@ -257,7 +257,7 @@ class LinkedList {
   // removeAtKey(key) that removes the node at the given key.
   removeAtKey(key) {
     if (this.head === null) {
-      console.log(`Key: ${key}, does not exist in an empty list.`);
+      console.log(`Key: ${key}. This key does not exist in an empty list.`);
       return false;
     }
 
@@ -275,7 +275,7 @@ class LinkedList {
     }
 
     if (current === null) {
-      console.log(`Key: ${key}, does not exist in this list.`);
+      console.log(`Key: ${key}. This key does not exist in this list.`);
       return false;
     }
 
