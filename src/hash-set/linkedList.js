@@ -21,9 +21,9 @@ class LinkedList {
     }
   }
 
-  // Adds a new node containing -value- to the start of the list.
-  prepend(key, value) {
-    this.head = new Node(key, value, this.head);
+  // Adds a new node with an element to the start of the list.
+  prepend(key) {
+    this.head = new Node(key, this.head);
   }
 
   // Returns the total number of nodes in the list
@@ -130,36 +130,13 @@ class LinkedList {
     let keys = [];
 
     while (current !== null) {
-      keys.push(`Key: ${current.key}, `);
+      keys.push(`Key: ${current.key}`);
       current = current.nextNode;
     }
     return keys;
   }
 
-  getAllValues() {
-    let current = this.head;
-    let value = [];
-
-    while (current !== null) {
-      value.push(`Value: ${current.value}, `);
-      current = current.nextNode;
-    }
-
-    return value;
-  }
-
-  getAllKeyValues() {
-    let current = this.head;
-    let keyValue = [];
-
-    while (current !== null) {
-      keyValue.push([current.key, current.value]);
-      current = current.nextNode;
-    }
-    return keyValue;
-  }
-
-  // Represents your LinkedList objects as strings, so you can print them out and preview them in the console.
+  // Represents LinkedList objects as strings, can print them out and preview them in the console.
   toString() {
     if (this.head === null) {
       return 'null';
@@ -169,16 +146,16 @@ class LinkedList {
     let string = '';
 
     while (current !== null) {
-      string += `${current.key}, ${current.value} -> `;
+      string += `${current.key} -> `;
       current = current.nextNode;
     }
 
     string += 'null';
     return string;
   }
-  // insertAt(value, index) that inserts a new node with the provided value at the given index.
-  insertAt(key, value, index) {
-    const newNode = new Node(key, value);
+  // insertAt(key, index) that inserts a new node with the provided key at the given index.
+  insertAt(key, index) {
+    const newNode = new Node(key);
 
     if (index < 0) {
       return;
