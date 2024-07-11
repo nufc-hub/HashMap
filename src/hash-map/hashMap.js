@@ -1,7 +1,3 @@
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bound");
-// }
-
 import LinkedList from './linkedList.js';
 
 class HashMap {
@@ -52,9 +48,6 @@ class HashMap {
     if (this.size / this.capacity > this.loadFactor) {
       this.resize();
     }
-
-    // console.log(this.buckets);
-    // Grow bucket when need to. When bucket size has reached the load factor.
   }
 
   resize() {
@@ -73,12 +66,9 @@ class HashMap {
         newBuckets[newIndex].append(current.key, current.value);
         current = current.nextNode;
       }
-
-      // Use the hash function to hash it
-      // Use the set function to add it to new array
     }
-    this.buckets = newBuckets;
     // Reassign Entries: Entries are moved to the new bucket array to reflect the updated hash values.
+    this.buckets = newBuckets;
   }
 
   // get(key) takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
@@ -114,7 +104,6 @@ class HashMap {
   // remove(key) takes a key as an argument.
   // If the given key is in the hash map, it should remove the entry with that key and return true.
   // If the key isn’t in the hash map, it should return false.
-
   remove(key) {
     const index = this.hash(key);
     const bucket = this.buckets[index];
